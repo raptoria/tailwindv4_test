@@ -1,0 +1,37 @@
+@layer theme, components, base, utilities;
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --color-background: var(--background);
+  --color-background-dark-1: oklch(from var(--background) calc(l - 0.01) c h);
+
+  --color-foreground: var(--foreground);
+  --color-foreground-dark-10: oklch(from var(--foreground) calc(l - 0.1) c h);
+}
+
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+
+@layer base {
+  :root {
+    --background: oklch(100% 0 0);
+    --foreground: oklch(3.9% 0 0);
+  }
+
+  .dark {
+    --background: oklch(21.76% 0.0247 244.59);
+    --foreground: oklch(100% 0 0);
+  }
+
+  body {
+    font-family: "Inter Variable", sans-serif;
+  }
+}
